@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход в личный кабинет | Easy Flight</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      main {
+        flex: 1;
+        padding-top: 70px;
+      }
+
+      .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        width: 100%;
+        min-height: 400px;
+      }
+
+      .login-card {
+        background: white;
+        padding: 40px 35px;
+        border-radius: 20px;
+        box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 450px;
+      }
+
+      .login-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #1a1a1a;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: #333;
+        font-size: 15px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+        transition: all 0.3s;
+      }
+
+      .form-input:focus {
+        outline: none;
+        border-color: #0066cc;
+        box-shadow: 0px 0px 0px 3px rgba(0, 102, 204, 0.1);
+      }
+
+      .login-btn {
+        background: linear-gradient(135deg, #0066cc, #0099ff);
+        color: white;
+        border: none;
+        padding: 16px;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 10px;
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 8px 20px rgba(0, 102, 204, 0.3);
+      }
+
+      .register-link {
+        text-align: center;
+        margin-top: 25px;
+        color: #666;
+        font-size: 14px;
+      }
+
+      .register-link p {
+        margin-bottom: 10px;
+      }
+
+      .register-link a {
+        color: #0066cc;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .register-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Шапка сайта -->
+    <header>
+      <nav>
+        <a href="index.html"><img src="img/Logo_1.png" alt="Logo" /></a>
+        <ul>
+          <li><a href="index.html#promotions">Акции</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="booking.html">Регистрация на рейс</a></li>
+          <li><a href="login.html" class="active">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="login-container">
+        <div class="login-card">
+          <h1 class="login-title">Вход в личный кабинет</h1>
+
+          <form class="login-form" action="profile.html" method="get">
+            <div class="form-group">
+              <label for="phone" class="form-label">Телефон</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+7 (___) ___-__-__"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Пароль</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Введите пароль"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <button type="submit" class="login-btn">Войти</button>
+          </form>
+
+          <div class="register-link">
+            <p>
+              Ещё нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+            </p>
+            <p><a href="#">Забыли пароль?</a></p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-tagline">Летайте по своим правилам</p>
+          <p class="footer-phone">✆ 8 (800) 111-22-33</p>
+          <p class="footer-hours">Ежедневно с 9:00 до 21:00</p>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html#promotions">Акции</a></li>
+            <li><a href="search.html">Поиск рейсов</a></li>
+            <li><a href="booking.html">Регистрация на рейс</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-legal">
+          <h4>Информация</h4>
+          <ul>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Правила бронирования</a></li>
+            <li><a href="#">Возврат билетов</a></li>
+            <li><a href="#">Конфиденциальность</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Мы в соцсетях</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="VKontakte">VK</a>
+            <a href="#" class="social-icon" aria-label="Telegram">TG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+            <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+          </div>
+          <p class="copyright">© 2025 Easy Flight. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Выбор мест | Easy Flight</title>
+    <style>
+      .seat-container {
+        padding: 120px 5% 80px;
+        max-width: 1200px;
+        margin: 0px auto;
+      }
+
+      .seat-header {
+        margin-bottom: 40px;
+      }
+
+      .seat-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #1a1a1a;
+      }
+
+      .seat-subtitle {
+        color: #666;
+        font-size: 18px;
+      }
+
+      .flight-info {
+        background: white;
+        border-radius: 20px;
+        padding: 25px 30px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .flight-details {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .flight-direction {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .flight-number {
+        color: #0066cc;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .passenger-selector {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .selector-label {
+        color: #666;
+        font-weight: 600;
+      }
+
+      .selector-dropdown {
+        padding: 10px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 16px;
+        background: white;
+        cursor: pointer;
+      }
+
+      .seat-map-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+      }
+
+      .aircraft-type {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+
+      .aircraft-type strong {
+        color: #1a1a1a;
+      }
+
+      .seat-map {
+        max-width: 800px;
+        margin: 0px auto;
+        position: relative;
+      }
+
+      .cockpit {
+        text-align: center;
+        margin-bottom: 40px;
+        color: #666;
+        font-size: 16px;
+      }
+
+      .cockpit::before {
+        content: "✈️";
+        font-size: 24px;
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .rows-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .row-number {
+        width: 40px;
+        text-align: center;
+        font-weight: 600;
+        color: #1a1a1a;
+        font-size: 18px;
+      }
+
+      .seats {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+      }
+
+      .seat-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .seat {
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+      }
+
+      .seat.available {
+        background: #e8f0fe;
+        color: #0066cc;
+        border: 2px solid #cce0ff;
+      }
+
+      .seat.available:hover {
+        background: #cce0ff;
+        transform: scale(1.1);
+      }
+
+      .seat.selected {
+        background: #4caf50;
+        color: white;
+        border: 2px solid #388e3c;
+      }
+
+      .seat.occupied {
+        background: #f5f5f5;
+        color: #999;
+        border: 2px solid #e0e0e0;
+        cursor: not-allowed;
+      }
+
+      .seat.premium {
+        background: linear-gradient(135deg, #ffd700, #ffa500);
+        color: #333;
+        border: 2px solid #ffa500;
+      }
+
+      .seat-label {
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #666;
+        white-space: nowrap;
+      }
+
+      .aisle {
+        width: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 14px;
+      }
+
+      .legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .legend-color {
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+      }
+
+      .legend-color.available {
+        background: #e8f0fe;
+        border: 2px solid #cce0ff;
+      }
+
+      .legend-color.selected {
+        background: #4caf50;
+        border: 2px solid #388e3c;
+      }
+
+      .legend-color.occupied {
+        background: #f5f5f5;
+        border: 2px solid #e0e0e0;
+      }
+
+      .legend-color.premium {
+        background: linear-gradient(135deg, #ffd700, #ffa500);
+        border: 2px solid #ffa500;
+      }
+
+      .legend-text {
+        color: #666;
+        font-size: 14px;
+      }
+
+      .selected-seats {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+      }
+
+      .selected-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #1a1a1a;
+      }
+
+      .selected-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .selected-item {
+        background: #f8fafc;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #e8f0fe;
+      }
+
+      .passenger-name {
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .seat-number {
+        font-size: 24px;
+        font-weight: 700;
+        color: #0066cc;
+        text-align: center;
+      }
+
+      .seat-actions {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .confirm-btn {
+        background: linear-gradient(135deg, #4caf50, #8bc34a);
+        color: white;
+        border: none;
+        padding: 20px 60px;
+        border-radius: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .confirm-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 10px 30px rgba(76, 175, 80, 0.3);
+      }
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .seat-container {
+          padding: 100px 15px 40px;
+        }
+
+        .flight-info {
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
+        }
+
+        .row {
+          gap: 10px;
+        }
+
+        .seats {
+          gap: 20px;
+        }
+
+        .seat {
+          width: 35px;
+          height: 35px;
+          font-size: 12px;
+        }
+
+        .legend {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .selected-list {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Шапка сайта -->
+    <header>
+      <nav>
+        <a href="index.html"><img src="img/Logo_1.png" alt="Logo" /></a>
+        <ul>
+          <li><a href="index.html#promotions">Акции</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="booking.html">Регистрация на рейс</a></li>
+          <li><a href="login.html">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="seat-container">
+        <div class="seat-header">
+          <h1 class="seat-title">Выбор мест в самолете</h1>
+          <p class="seat-subtitle">
+            Выберите удобные места для каждого пассажира
+          </p>
+        </div>
+
+        <div class="flight-info">
+          <div class="flight-details">
+            <div class="flight-direction">
+              Москва (SVO) → Санкт-Петербург (LED)
+            </div>
+            <div class="flight-number">Рейс EF-215 | 15 ноября 2025</div>
+          </div>
+
+          <div class="passenger-selector">
+            <span class="selector-label">Пассажир:</span>
+            <select class="selector-dropdown">
+              <option value="p1">Пассажир 1: Иван Иванов</option>
+              <option value="p2">Пассажир 2: Мария Иванова</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="seat-map-section">
+          <div class="aircraft-type">
+            Самолет: <strong>Bombardier CRJ200</strong> | Конфигурация салона:
+            <strong>12 рядов по 4 места (2x2)</strong>
+          </div>
+
+          <div class="seat-map">
+            <div class="cockpit">Кабина пилотов</div>
+
+            <div class="rows-container">
+              <!-- Ряд 1 -->
+              <div class="row">
+                <div class="row-number">1</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat premium" data-seat="1A">
+                      <span>1A</span>
+                      <div class="seat-label">Премиум</div>
+                    </div>
+                    <div class="seat premium" data-seat="1B">
+                      <span>1B</span>
+                      <div class="seat-label">Премиум</div>
+                    </div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat premium" data-seat="1C">
+                      <span>1C</span>
+                      <div class="seat-label">Премиум</div>
+                    </div>
+                    <div class="seat premium" data-seat="1D">
+                      <span>1D</span>
+                      <div class="seat-label">Премиум</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 2-11 -->
+              <div class="row">
+                <div class="row-number">2</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="2A">2A</div>
+                    <div class="seat occupied" data-seat="2B">2B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="2C">2C</div>
+                    <div class="seat selected" data-seat="2D">2D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 3 -->
+              <div class="row">
+                <div class="row-number">3</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="3A">3A</div>
+                    <div class="seat occupied" data-seat="3B">3B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="3C">3C</div>
+                    <div class="seat available" data-seat="3D">3D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 4 -->
+              <div class="row">
+                <div class="row-number">4</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="4A">4A</div>
+                    <div class="seat available" data-seat="4B">4B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="4C">4C</div>
+                    <div class="seat occupied" data-seat="4D">4D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 5 -->
+              <div class="row">
+                <div class="row-number">5</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="5A">5A</div>
+                    <div class="seat available" data-seat="5B">5B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="5C">5C</div>
+                    <div class="seat available" data-seat="5D">5D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 6 -->
+              <div class="row">
+                <div class="row-number">6</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="6A">6A</div>
+                    <div class="seat occupied" data-seat="6B">6B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="6C">6C</div>
+                    <div class="seat available" data-seat="6D">6D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 7 -->
+              <div class="row">
+                <div class="row-number">7</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="7A">7A</div>
+                    <div class="seat available" data-seat="7B">7B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="7C">7C</div>
+                    <div class="seat occupied" data-seat="7D">7D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 8 -->
+              <div class="row">
+                <div class="row-number">8</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="8A">8A</div>
+                    <div class="seat available" data-seat="8B">8B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="8C">8C</div>
+                    <div class="seat available" data-seat="8D">8D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 9 -->
+              <div class="row">
+                <div class="row-number">9</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="9A">9A</div>
+                    <div class="seat occupied" data-seat="9B">9B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="9C">9C</div>
+                    <div class="seat available" data-seat="9D">9D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 10 -->
+              <div class="row">
+                <div class="row-number">10</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="10A">10A</div>
+                    <div class="seat available" data-seat="10B">10B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="10C">10C</div>
+                    <div class="seat occupied" data-seat="10D">10D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 11 -->
+              <div class="row">
+                <div class="row-number">11</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="11A">11A</div>
+                    <div class="seat available" data-seat="11B">11B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="11C">11C</div>
+                    <div class="seat available" data-seat="11D">11D</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 12 -->
+              <div class="row">
+                <div class="row-number">12</div>
+                <div class="seats">
+                  <div class="seat-group">
+                    <div class="seat available" data-seat="12A">12A</div>
+                    <div class="seat available" data-seat="12B">12B</div>
+                  </div>
+                  <div class="aisle">Проход</div>
+                  <div class="seat-group">
+                    <div class="seat occupied" data-seat="12C">12C</div>
+                    <div class="seat occupied" data-seat="12D">12D</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-color available"></div>
+              <div class="legend-text">Доступно</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color selected"></div>
+              <div class="legend-text">Выбрано</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color occupied"></div>
+              <div class="legend-text">Занято</div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color premium"></div>
+              <div class="legend-text">Премиум (+2000 ₽)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="selected-seats">
+          <h3 class="selected-title">Выбранные места</h3>
+
+          <div class="selected-list">
+            <div class="selected-item">
+              <div class="passenger-name">Иван Иванов</div>
+              <div class="seat-number">2D</div>
+              <div class="seat-info">Ряд 2, место D (у окна)</div>
+            </div>
+
+            <div class="selected-item">
+              <div class="passenger-name">Мария Иванова</div>
+              <div class="seat-number">-</div>
+              <div class="seat-info">Место не выбрано</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="seat-actions">
+          <form action="booking_management.html" method="get">
+            <button type="submit" class="confirm-btn">
+              Подтвердить выбор мест
+            </button>
+            <p style="color: #666; margin-top: 15px">
+              Вы можете вернуться к выбору мест позже из личного кабинета
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-tagline">Летайте по своим правилам</p>
+          <p class="footer-phone">✆ 8 (800) 111-22-33</p>
+          <p class="footer-hours">Ежедневно с 9:00 до 21:00</p>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html#promotions">Акции</a></li>
+            <li><a href="search.html">Поиск рейсов</a></li>
+            <li><a href="booking.html">Регистрация на рейс</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-legal">
+          <h4>Информация</h4>
+          <ul>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Правила бронирования</a></li>
+            <li><a href="#">Возврат билетов</a></li>
+            <li><a href="#">Конфиденциальность</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Мы в соцсетях</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="VKontakte">VK</a>
+            <a href="#" class="social-icon" aria-label="Telegram">TG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+            <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+          </div>
+          <p class="copyright">© 2025 Easy Flight. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

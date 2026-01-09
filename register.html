@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Регистрация | Easy Flight</title>
+    <style>
+      .register-container {
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 20px 80px;
+      }
+
+      .register-card {
+        background: white;
+        padding: 50px 40px;
+        border-radius: 25px;
+        box-shadow: 0px 20px 60px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .register-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #1a1a1a;
+      }
+
+      .register-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .form-group.full-width {
+        grid-column: 1 / -1;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: #333;
+        font-size: 16px;
+      }
+
+      .form-input,
+      .form-select {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        font-family: "Poppins", sans-serif;
+        transition: all 0.3s;
+      }
+
+      .form-select {
+        background-color: white;
+        cursor: pointer;
+      }
+
+      .form-input:focus,
+      .form-select:focus {
+        outline: none;
+        border-color: #0066cc;
+        box-shadow: 0px 0px 0px 3px rgba(0, 102, 204, 0.1);
+      }
+
+      .register-btn {
+        background: linear-gradient(135deg, #0066cc, #0099ff);
+        color: white;
+        border: none;
+        padding: 18px;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 10px;
+        grid-column: 1 / -1;
+      }
+
+      .register-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 10px 30px rgba(0, 102, 204, 0.3);
+      }
+
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+        grid-column: 1 / -1;
+      }
+
+      .login-link a {
+        color: #0066cc;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Шапка сайта -->
+    <header>
+      <nav>
+        <a href="index.html"><img src="img/Logo_1.png" alt="Logo" /></a>
+        <ul>
+          <li><a href="index.html#promotions">Акции</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="booking.html">Регистрация на рейс</a></li>
+          <li><a href="login.html">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="register-container">
+        <div class="register-card">
+          <h1 class="register-title">Регистрация в личном кабинете</h1>
+
+          <form class="register-form" action="login.html" method="get">
+            <div class="form-group">
+              <label for="first_name" class="form-label">Имя</label>
+              <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                placeholder="Иван"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="last_name" class="form-label">Фамилия</label>
+              <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                placeholder="Иванов"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="doc_type" class="form-label">Тип документа</label>
+              <select
+                id="doc_type"
+                name="doc_type"
+                required
+                class="form-select"
+              >
+                <option value="" disabled selected>
+                  Выберите тип документа
+                </option>
+                <option value="passport">Паспорт РФ</option>
+                <option value="international_passport">Загранпаспорт</option>
+                <option value="birth_certificate">
+                  Свидетельство о рождении
+                </option>
+                <option value="other">Другой документ</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="doc_number" class="form-label"
+                >Серия и номер документа</label
+              >
+              <input
+                type="text"
+                id="doc_number"
+                name="doc_number"
+                placeholder="4510 123456"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group full-width">
+              <label for="phone" class="form-label">Телефон</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="+7 (___) ___-__-__"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="form-label">Пароль</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Придумайте пароль"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="confirm_password" class="form-label"
+                >Повтор пароля</label
+              >
+              <input
+                type="password"
+                id="confirm_password"
+                name="confirm_password"
+                placeholder="Повторите пароль"
+                required
+                class="form-input"
+              />
+            </div>
+
+            <button type="submit" class="register-btn">
+              Зарегистрироваться
+            </button>
+
+            <div class="login-link">
+              <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-tagline">Летайте по своим правилам</p>
+          <p class="footer-phone">✆ 8 (800) 111-22-33</p>
+          <p class="footer-hours">Ежедневно с 9:00 до 21:00</p>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html#promotions">Акции</a></li>
+            <li><a href="search.html">Поиск рейсов</a></li>
+            <li><a href="booking.html">Регистрация на рейс</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-legal">
+          <h4>Информация</h4>
+          <ul>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Правила бронирования</a></li>
+            <li><a href="#">Возврат билетов</a></li>
+            <li><a href="#">Конфиденциальность</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Мы в соцсетях</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="VKontakte">VK</a>
+            <a href="#" class="social-icon" aria-label="Telegram">TG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+            <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+          </div>
+          <p class="copyright">© 2025 Easy Flight. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

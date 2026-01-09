@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easy Flight</title>
+    <style>
+      /* Добавим якорь для плавного скролла */
+      #promotions {
+        scroll-margin-top: 80px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--Шапка сайта-->
+    <header>
+      <!--Главная навигация-->
+      <nav>
+        <a href="index.html"><img src="img/Logo_1.png" alt="Logo" /></a>
+        <ul>
+          <li><a href="#promotions">Акции</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="booking.html">Регистрация на рейс</a></li>
+          <li><a href="login.html">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!--Основное содержимое страницы-->
+
+      <!-- Старт-секция -->
+      <section class="start-section">
+        <div class="start-content">
+          <h1>Летайте туда, куда хотите вы</h1>
+          <p>
+            Создавайте маршруты, собирайте компанию, получайте скидки до 50%
+          </p>
+          <a href="#search" class="hero-btn">Начать поиск рейса</a>
+        </div>
+      </section>
+
+      <!--Бронирование-->
+      <section class="steps-section">
+        <h2 class="section-title">Запусти свой рейс с нуля за 3 шага</h2>
+        <p class="section-subtitle">
+          Вы решаете, куда лететь — мы организуем прямой рейс
+        </p>
+
+        <div class="step-container">
+          <div class="step-item">
+            <div class="step-number">1</div>
+            <h3>Выберите дату</h3>
+            <p>Укажите, когда хотите отправиться в путешествие</p>
+            <label for="demo-date" class="visually-hidden"
+              >Выберите дату:</label
+            >
+            <input
+              type="date"
+              id="demo-date"
+              value="2025-11-20"
+              class="date-input"
+            />
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">2</div>
+            <h3>Соберите компанию</h3>
+            <p>Чем больше пассажиров, тем ниже цена для каждого</p>
+            <label for="demo-slider" class="visually-hidden"
+              >Выберите число бронирований:</label
+            >
+            <input
+              type="range"
+              id="demo-slider"
+              min="0"
+              max="100"
+              value="10"
+              class="range-slider"
+            />
+            <div class="slider-value">10 пассажиров</div>
+          </div>
+
+          <div class="step-item">
+            <div class="step-number">3</div>
+            <h3>Получите лучшую цену</h3>
+            <p>Фиксируем скидку сразу после набора 50% мест</p>
+            <div class="price-container">
+              <p class="old-price">12 500 руб.</p>
+              <p class="final-price">9 000 руб.</p>
+              <p class="discount-badge">-28%</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Гарантии -->
+      <section class="guarantees-section">
+        <h2 class="section-title">Вы нам доверяете — мы вам гарантируем</h2>
+        <p class="section-subtitle">
+          Прозрачные условия и надежная поддержка на каждом этапе
+        </p>
+
+        <div class="guarantees">
+          <article class="guarantee-card">
+            <div class="guarantee-icon">💯</div>
+            <h3>100% возврат средств</h3>
+            <p>
+              Если рейс не набирает 50% бронирований до дедлайна, мы гарантируем
+              полный возврат в течение 24 часов.
+            </p>
+          </article>
+
+          <article class="guarantee-card">
+            <div class="guarantee-icon">💰</div>
+            <h3>Честная цена</h3>
+            <p>
+              Ваша скидка фиксируется после набора 50% и не меняется вплоть до
+              вылета. Никаких скрытых платежей.
+            </p>
+          </article>
+
+          <article class="guarantee-card">
+            <div class="guarantee-icon">✈️</div>
+            <h3>Прямые рейсы по вашим маршрутам</h3>
+            <p>
+              Забудьте о пересадках. Выбирайте направление, и мы запустим прямой
+              рейс. Мы создаем нужные вам маршруты, а не только выгодные для
+              нас.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!--Форма поиска-->
+      <form id="search" class="search-form" action="search.html" method="get">
+        <h2 class="section-title">Найдите свой идеальный рейс</h2>
+        <p class="section-subtitle">
+          Укажите параметры и мы подберем лучшие варианты
+        </p>
+
+        <div class="search-fields">
+          <div class="input-group">
+            <label for="from_city">Откуда</label>
+            <input
+              type="text"
+              id="from_city"
+              name="from_city"
+              placeholder="Город вылета"
+              required
+              class="city-input"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="to_city">Куда</label>
+            <input
+              type="text"
+              id="to_city"
+              name="to_city"
+              placeholder="Город назначения"
+              required
+              class="city-input"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="date_out">Туда</label>
+            <input
+              type="date"
+              id="date_out"
+              name="date_out"
+              required
+              class="date-input"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="date_back"
+              >Обратно <span class="optional">(не обязательно)</span></label
+            >
+            <input
+              type="date"
+              id="date_back"
+              name="date_back"
+              class="date-input"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="passengers">Пассажиры</label>
+            <select
+              id="passengers"
+              name="passengers"
+              required
+              class="select-input"
+            >
+              <option value="" disabled selected>Количество пассажиров</option>
+              <option value="1">1 Пассажир</option>
+              <option value="2">2 Пассажира</option>
+              <option value="3">3 Пассажира</option>
+              <option value="4">4 Пассажира</option>
+              <option value="5">5 Пассажиров</option>
+              <option value="6">6 Пассажиров</option>
+              <option value="7">7 Пассажиров</option>
+              <option value="8">8 Пассажиров</option>
+            </select>
+          </div>
+
+          <button type="submit" class="search-btn">
+            <span>Найти рейсы</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </form>
+
+      <!--Акции-->
+      <section id="promotions" class="promo-section">
+        <h2 class="section-title">Платите меньше, летайте чаще</h2>
+        <p class="section-subtitle">
+          Специальные предложения для наших пассажиров
+        </p>
+
+        <div class="promo-cards">
+          <article class="promo-card">
+            <div class="promo-header">
+              <span class="promo-badge">-20%</span>
+              <h3>Лёгкий старт</h3>
+            </div>
+            <p>
+              Бронируйте билет в первые 48 часов после объявления маршрута и
+              получите дополнительную скидку 20% к финальной цене после
+              подтверждения рейса.
+            </p>
+            <a href="#" class="promo-link">Подробнее →</a>
+          </article>
+
+          <article class="promo-card">
+            <div class="promo-header">
+              <span class="promo-badge">4=3</span>
+              <h3>Вместе в полёт</h3>
+            </div>
+            <p>
+              Соберите друзей! При бронировании трех билетов на один рейс
+              четвертый билет — в подарок. Помогите рейсу взлететь и сэкономьте
+              до 25%!
+            </p>
+            <a href="#" class="promo-link">Подробнее →</a>
+          </article>
+
+          <article class="promo-card">
+            <div class="promo-header">
+              <span class="promo-badge">100%</span>
+              <h3>Гибкий возврат</h3>
+            </div>
+            <p>
+              Планы изменились? Отмените бронирование и получите полный возврат
+              средств, даже если рейс уже набрал 50%. Действует до официального
+              подтверждения рейса.
+            </p>
+            <a href="#" class="promo-link">Подробнее →</a>
+          </article>
+        </div>
+      </section>
+
+      <!--Форма подписки -->
+      <form class="subscribe-form">
+        <h2 class="section-title">Присоединяйтесь к EasyClub</h2>
+        <p class="section-subtitle">
+          Получайте эксклюзивные предложения и первыми узнавайте о новых
+          маршрутах
+        </p>
+
+        <div class="subscribe-content">
+          <div class="subscribe-inputs">
+            <div class="input-group">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your.name@email.ru"
+                required
+                class="email-input"
+              />
+            </div>
+
+            <button type="submit" class="subscribe-btn">
+              Подписаться
+              <span class="btn-icon">✈️</span>
+            </button>
+          </div>
+
+          <div class="consent-group">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                id="data_consent"
+                name="data_consent"
+                required
+              />
+              <span class="checkmark"></span>
+              Я даю согласие на обработку персональных данных
+            </label>
+
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                id="terms_consent"
+                name="terms_consent"
+                required
+              />
+              <span class="checkmark"></span>
+              Я ознакомлен с <a href="#" target="_blank">условиями акций</a>
+            </label>
+          </div>
+        </div>
+      </form>
+    </main>
+
+    <!--Подвал сайта-->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-tagline">Летайте по своим правилам</p>
+          <p class="footer-phone">✆ 8 (800) 111-22-33</p>
+          <p class="footer-hours">Ежедневно с 9:00 до 21:00</p>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="#promotions">Акции</a></li>
+            <li><a href="search.html">Поиск рейсов</a></li>
+            <li><a href="booking.html">Регистрация на рейс</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-legal">
+          <h4>Информация</h4>
+          <ul>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Правила бронирования</a></li>
+            <li><a href="#">Возврат билетов</a></li>
+            <li><a href="#">Конфиденциальность</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Мы в соцсетях</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="VKontakte">VK</a>
+            <a href="#" class="social-icon" aria-label="Telegram">TG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+            <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+          </div>
+          <p class="copyright">© 2025 Easy Flight. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

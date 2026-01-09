@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <link rel="stylesheet" href="./Style/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Управление бронированием | Easy Flight</title>
+    <style>
+      .management-container {
+        padding: 120px 5% 80px;
+        max-width: 1200px;
+        margin: 0px auto;
+      }
+
+      .booking-header {
+        background: linear-gradient(135deg, #0066cc, #0099ff);
+        color: white;
+        padding: 30px;
+        border-radius: 20px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .booking-code {
+        font-family: "Montserrat", sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+      }
+
+      .booking-price {
+        font-size: 28px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px 25px;
+        border-radius: 10px;
+      }
+
+      .flights-section,
+      .passengers-section {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+        margin-bottom: 40px;
+      }
+
+      .section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #1a1a1a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .flight-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 30px;
+      }
+
+      .flight-card {
+        background: #f8fafc;
+        border-radius: 15px;
+        padding: 25px;
+        border: 2px solid #e8f0fe;
+      }
+
+      .flight-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .flight-number {
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #0066cc;
+      }
+
+      .aircraft-type {
+        color: #666;
+        font-size: 16px;
+      }
+
+      .flight-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .detail-item {
+        margin-bottom: 15px;
+      }
+
+      .detail-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      .detail-value {
+        font-size: 16px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .probability-display {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .probability-bar {
+        flex: 1;
+        height: 10px;
+        background: #e0e0e0;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .probability-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #4caf50, #8bc34a);
+        border-radius: 5px;
+      }
+
+      .probability-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #4caf50;
+        min-width: 50px;
+      }
+
+      .passengers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 25px;
+      }
+
+      .passenger-card {
+        background: #f8fafc;
+        border-radius: 15px;
+        padding: 25px;
+        border: 2px solid #e8f0fe;
+      }
+
+      .passenger-header {
+        font-family: "Montserrat", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: #0066cc;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .passenger-details {
+        margin-bottom: 20px;
+      }
+
+      .seats-info {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .seat-direction {
+        flex: 1;
+      }
+
+      .seat-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      .seat-value {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+
+      .seat-value.not-selected {
+        color: #ff4444;
+        font-style: italic;
+      }
+
+      .seat-select-btn {
+        background: #0066cc;
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 5px;
+      }
+
+      .seat-select-btn:hover {
+        background: #0052a3;
+      }
+
+      .actions-section {
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .seat-action-btn {
+        background: linear-gradient(135deg, #4caf50, #8bc34a);
+        color: white;
+        border: none;
+        padding: 18px 50px;
+        border-radius: 15px;
+        font-size: 20px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .seat-action-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0px 10px 30px rgba(76, 175, 80, 0.3);
+      }
+      /* Адаптивность */
+      @media (max-width: 768px) {
+        .management-container {
+          padding: 100px 15px 40px;
+        }
+
+        .booking-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .flight-cards {
+          grid-template-columns: 1fr;
+        }
+
+        .flight-details {
+          grid-template-columns: 1fr;
+        }
+
+        .passengers-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .seats-info {
+          flex-direction: column;
+          gap: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Шапка сайта -->
+    <header>
+      <nav>
+        <a href="index.html"><img src="img/Logo_1.png" alt="Logo" /></a>
+        <ul>
+          <li><a href="index.html#promotions">Акции</a></li>
+          <li><a href="search.html">Поиск</a></li>
+          <li><a href="booking.html">Регистрация на рейс</a></li>
+          <li><a href="login.html">Личный кабинет</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="management-container">
+        <div class="booking-header">
+          <div class="booking-code">Бронирование #EF-2025-789</div>
+          <div class="booking-price">Итого: 32 500 ₽</div>
+        </div>
+
+        <div class="flights-section">
+          <h2 class="section-title">Информация о перелете</h2>
+
+          <div class="flight-cards">
+            <div class="flight-card">
+              <div class="flight-header">
+                <div class="flight-number">EF-215</div>
+                <div class="aircraft-type">Bombardier CRJ200</div>
+              </div>
+
+              <div class="flight-details">
+                <div class="detail-item">
+                  <div class="detail-label">Город вылета</div>
+                  <div class="detail-value">Москва</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Аэропорт вылета</div>
+                  <div class="detail-value">Шереметьево (SVO)</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Дата вылета</div>
+                  <div class="detail-value">15 ноября 2025</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время вылета</div>
+                  <div class="detail-value">08:30</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Город назначения</div>
+                  <div class="detail-value">Санкт-Петербург</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Аэропорт назначения</div>
+                  <div class="detail-value">Пулково (LED)</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время прибытия</div>
+                  <div class="detail-value">10:00</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время в пути</div>
+                  <div class="detail-value">1ч 30м</div>
+                </div>
+              </div>
+
+              <div class="probability-display">
+                <div class="probability-bar">
+                  <div class="probability-fill" style="width: 85%"></div>
+                </div>
+                <div class="probability-value">Вероятность вылета: 85%</div>
+              </div>
+            </div>
+
+            <div class="flight-card">
+              <div class="flight-header">
+                <div class="flight-number">EF-216</div>
+                <div class="aircraft-type">Bombardier CRJ200</div>
+              </div>
+
+              <div class="flight-details">
+                <div class="detail-item">
+                  <div class="detail-label">Город вылета</div>
+                  <div class="detail-value">Санкт-Петербург</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Аэропорт вылета</div>
+                  <div class="detail-value">Пулково (LED)</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Дата вылета</div>
+                  <div class="detail-value">18 ноября 2025</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время вылета</div>
+                  <div class="detail-value">19:00</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Город назначения</div>
+                  <div class="detail-value">Москва</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Аэропорт назначения</div>
+                  <div class="detail-value">Шереметьево (SVO)</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время прибытия</div>
+                  <div class="detail-value">20:30</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Время в пути</div>
+                  <div class="detail-value">1ч 30м</div>
+                </div>
+              </div>
+
+              <div class="probability-display">
+                <div class="probability-bar">
+                  <div class="probability-fill" style="width: 75%"></div>
+                </div>
+                <div class="probability-value">Вероятность вылета: 75%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="passengers-section">
+          <h2 class="section-title">Информация о пассажирах</h2>
+
+          <div class="passengers-grid">
+            <div class="passenger-card">
+              <div class="passenger-header">Пассажир 1: Иван Иванов</div>
+
+              <div class="passenger-details">
+                <div class="detail-item">
+                  <div class="detail-label">Дата рождения</div>
+                  <div class="detail-value">15.05.1990</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Тип документа</div>
+                  <div class="detail-value">Паспорт РФ</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Серия и номер документа</div>
+                  <div class="detail-value">4510 123456</div>
+                </div>
+              </div>
+
+              <div class="seats-info">
+                <div class="seat-direction">
+                  <div class="seat-label">Место (Москва → СПб)</div>
+                  <div class="seat-value not-selected">Не выбрано</div>
+                  <button
+                    class="seat-select-btn"
+                    onclick="window.location.href='seat.html'"
+                  >
+                    Выбрать место
+                  </button>
+                </div>
+
+                <div class="seat-direction">
+                  <div class="seat-label">Место (СПб → Москва)</div>
+                  <div class="seat-value">12A</div>
+                  <button
+                    class="seat-select-btn"
+                    onclick="window.location.href='seat.html'"
+                  >
+                    Изменить место
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="passenger-card">
+              <div class="passenger-header">Пассажир 2: Мария Иванова</div>
+
+              <div class="passenger-details">
+                <div class="detail-item">
+                  <div class="detail-label">Дата рождения</div>
+                  <div class="detail-value">20.08.1992</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Тип документа</div>
+                  <div class="detail-value">Паспорт РФ</div>
+                </div>
+                <div class="detail-item">
+                  <div class="detail-label">Серия и номер документа</div>
+                  <div class="detail-value">4510 654321</div>
+                </div>
+              </div>
+
+              <div class="seats-info">
+                <div class="seat-direction">
+                  <div class="seat-label">Место (Москва → СПб)</div>
+                  <div class="seat-value">12B</div>
+                  <button
+                    class="seat-select-btn"
+                    onclick="window.location.href='seat.html'"
+                  >
+                    Изменить место
+                  </button>
+                </div>
+
+                <div class="seat-direction">
+                  <div class="seat-label">Место (СПб → Москва)</div>
+                  <div class="seat-value not-selected">Не выбрано</div>
+                  <button
+                    class="seat-select-btn"
+                    onclick="window.location.href='seat.html'"
+                  >
+                    Выбрать место
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions-section">
+          <form action="seat.html" method="get">
+            <button type="submit" class="seat-action-btn">
+              <span>✈️</span>
+              Выбрать места в самолете
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- Подвал сайта -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <p class="footer-tagline">Летайте по своим правилам</p>
+          <p class="footer-phone">✆ 8 (800) 111-22-33</p>
+          <p class="footer-hours">Ежедневно с 9:00 до 21:00</p>
+        </div>
+
+        <div class="footer-nav">
+          <h4>Навигация</h4>
+          <ul>
+            <li><a href="index.html#promotions">Акции</a></li>
+            <li><a href="search.html">Поиск рейсов</a></li>
+            <li><a href="booking.html">Регистрация на рейс</a></li>
+            <li><a href="login.html">Личный кабинет</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-legal">
+          <h4>Информация</h4>
+          <ul>
+            <li><a href="#">О компании</a></li>
+            <li><a href="#">Правила бронирования</a></li>
+            <li><a href="#">Возврат билетов</a></li>
+            <li><a href="#">Конфиденциальность</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Мы в соцсетях</h4>
+          <div class="social-icons">
+            <a href="#" class="social-icon" aria-label="VKontakte">VK</a>
+            <a href="#" class="social-icon" aria-label="Telegram">TG</a>
+            <a href="#" class="social-icon" aria-label="WhatsApp">WA</a>
+            <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+          </div>
+          <p class="copyright">© 2025 Easy Flight. Все права защищены.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
