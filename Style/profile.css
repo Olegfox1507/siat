@@ -1,0 +1,200 @@
+.profile-container {
+  padding: 120px 5% 80px;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.user-info h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.flights-count {
+  font-size: 18px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flights-count::before {
+  content: "✈️";
+}
+
+.logout-btn {
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #cc0000;
+  transform: translateY(-2px);
+}
+
+.bookings-section {
+  margin-top: 60px;
+}
+
+.section-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+}
+
+.booking-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.booking-card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  border: 2px solid transparent;
+  transition: all 0.3s;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+  border-color: #0066cc;
+  box-shadow: 0px 15px 40px rgba(0, 102, 204, 0.1);
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.booking-code {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0066cc;
+}
+
+.flight-status {
+  background: #4caf50;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.flight-info {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.airport-departure,
+.airport-arrival {
+  text-align: center;
+}
+
+.airport-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+.flight-time {
+  font-size: 14px;
+  color: #666;
+}
+
+.flight-icon {
+  font-size: 24px;
+  color: #0066cc;
+  text-align: center;
+}
+
+.flight-date {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.manage-btn {
+  display: block;
+  width: 100%;
+  background: #f8fafc;
+  color: #0066cc;
+  border: 2px solid #0066cc;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.3s;
+  margin-top: 20px;
+  text-decoration: none;
+}
+
+.manage-btn:hover {
+  background: #0066cc;
+  color: white;
+}
+
+.no-bookings {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.no-bookings h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.search-link {
+  display: inline-block;
+  background: #0066cc;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.search-link:hover {
+  background: #0052a3;
+  transform: translateY(-2px);
+}

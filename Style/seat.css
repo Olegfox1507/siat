@@ -1,0 +1,316 @@
+.seat-container {
+  padding: 120px 5% 80px;
+  max-width: 1200px;
+  margin: 0px auto;
+}
+
+.seat-header {
+  margin-bottom: 40px;
+}
+
+.seat-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #1a1a1a;
+}
+
+.seat-subtitle {
+  color: #666;
+  font-size: 18px;
+}
+
+.flight-info {
+  background: white;
+  border-radius: 20px;
+  padding: 25px 30px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.flight-details {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.flight-direction {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.flight-number {
+  color: #0066cc;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.passenger-selector {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.selector-label {
+  color: #666;
+  font-weight: 600;
+}
+
+.selector-dropdown {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  background: white;
+  cursor: pointer;
+}
+
+.seat-map-section {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.aircraft-type {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.aircraft-type strong {
+  color: #1a1a1a;
+}
+
+.seat-map {
+  max-width: 800px;
+  margin: 0px auto;
+  position: relative;
+}
+
+.cockpit {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+.cockpit::before {
+  content: "✈️";
+  font-size: 24px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.rows-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.row-number {
+  width: 40px;
+  text-align: center;
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 18px;
+}
+
+.seats {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.seat-group {
+  display: flex;
+  gap: 10px;
+}
+
+.seat {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.seat.available {
+  background: #e8f0fe;
+  color: #0066cc;
+  border: 2px solid #cce0ff;
+}
+
+.seat.available:hover {
+  background: #cce0ff;
+  transform: scale(1.1);
+}
+
+.seat.selected {
+  background: #4caf50;
+  color: white;
+  border: 2px solid #388e3c;
+}
+
+.seat.occupied {
+  background: #f5f5f5;
+  color: #999;
+  border: 2px solid #e0e0e0;
+  cursor: not-allowed;
+}
+
+.seat.premium {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  color: #333;
+  border: 2px solid #ffa500;
+}
+
+.seat-label {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.aisle {
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 14px;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.legend-color.available {
+  background: #e8f0fe;
+  border: 2px solid #cce0ff;
+}
+
+.legend-color.selected {
+  background: #4caf50;
+  border: 2px solid #388e3c;
+}
+
+.legend-color.occupied {
+  background: #f5f5f5;
+  border: 2px solid #e0e0e0;
+}
+
+.legend-color.premium {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  border: 2px solid #ffa500;
+}
+
+.legend-text {
+  color: #666;
+  font-size: 14px;
+}
+
+.selected-seats {
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.selected-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.selected-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.selected-item {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 15px;
+  border: 2px solid #e8f0fe;
+}
+
+.passenger-name {
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.seat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0066cc;
+  text-align: center;
+}
+
+.seat-actions {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #4caf50, #8bc34a);
+  color: white;
+  border: none;
+  padding: 20px 60px;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 10px 30px rgba(76, 175, 80, 0.3);
+}
